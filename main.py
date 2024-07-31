@@ -10,27 +10,19 @@ import shutil
 
 def download_mimikatz(arch):
     url = "https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.zip"
-    
     try:
-        # Descargar el archivo
         subprocess.run(["wget", url, "-O", "mimikatz_trunk.zip"], check=True)
-        
-        # Descomprimir el archivo zip
         subprocess.run(["unzip", "mimikatz_trunk.zip"], check=True)
         
-        # Eliminar el directorio correspondiente según la arquitectura
         if arch == "x64":
             shutil.rmtree("./Win32", ignore_errors=True)
         elif arch == "x86":
             shutil.rmtree("./x64", ignore_errors=True)
-        
-        # Copiar el ejecutable a la raíz del directorio
         if arch == "x64":
             shutil.copy("./x64/mimikatz.exe", "mimikatz.exe")
         elif arch == "x86":
             shutil.copy("./x86/mimikatz.exe", "mimikatz.exe")
         
-        # Eliminar el archivo zip y el directorio temporal
         os.remove("./mimikatz_trunk.zip")
         #os.remove("./kiwi_passwords.yar")
         #os.remove("./mimicom.idl")
@@ -41,12 +33,7 @@ def download_mimikatz(arch):
     except FileNotFoundError as e:
         print(f"File not found error: {e}")
 
-
-
-
-
 def download_kerbrute(platform, arch):
-
     if platform == "linux":
         if arch == "x86": 
             url = "https://github.com/ropnop/kerbrute/releases/download/v1.0.3/kerbrute_linux_386" 
@@ -62,9 +49,7 @@ def download_kerbrute(platform, arch):
     else:
         print("Unsupported platform specified.")
         return
-
     try:
-        #os.makedirs("kerbrute", exist_ok=True)
         filename = os.path.basename(url)
         subprocess.run(["wget", url, "-O", filename], check=True)
         if platform == "linux":
@@ -72,10 +57,6 @@ def download_kerbrute(platform, arch):
         print(f"Kerbrute for {platform} {arch} downloaded successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
-
-
-
-
 
 def download_impacket(platform, arch):
     if platform == "linux":
@@ -104,34 +85,27 @@ def download_impacket(platform, arch):
 def download_windows_exploit_suggester():
     url = "https://raw.githubusercontent.com/AonCyberLabs/Windows-Exploit-Suggester/master/windows-exploit-suggester.py"
     output_file = "windows-exploit-suggester.py"
-    
     try:
-        # Ejecutar el comando wget para descargar el archivo
         subprocess.run(["wget", url, "-O", output_file], check=True)
         print(f"Downloaded {output_file} successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")      
-
-
 
 def download_linenum():
     url = "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh"
     output_file = "LinEnum.sh"
     
     try:
-        # Ejecutar el comando wget para descargar el archivo
         subprocess.run(["wget", url, "-O", output_file], check=True)
         print(f"Downloaded {output_file} successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
-
 
 def download_linuxprivchecker():
     url = "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py"
     output_file = "linuxprivchecker.py"
     
     try:
-        # Ejecutar el comando wget para descargar el archivo
         subprocess.run(["wget", url, "-O", output_file], check=True)
         print(f"Downloaded {output_file} successfully.")
     except subprocess.CalledProcessError as e:
@@ -148,25 +122,21 @@ def download_linux_exploit_suggester2():
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
 
-
 def download_rpcenum():
     url = "https://raw.githubusercontent.com/KermitPurple96/rpcenum/master/rpcenum.sh"
     output_file = "rpcenum.sh"
     
     try:
-        # Ejecutar el comando wget para descargar el archivo
         subprocess.run(["wget", url, "-O", output_file], check=True)
         print(f"Downloaded {output_file} successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
-
 
 def download_pywerview():
     url = "https://github.com/the-useless-one/pywerview/archive/refs/tags/v0.6.zip"
     output_file = "pywerview_v0.6.zip"
     
     try:
-        # Ejecutar el comando wget para descargar el archivo
         subprocess.run(["wget", url, "-O", output_file], check=True)
         subprocess.run(["unzip", output_file], check=True)
         subprocess.run(["rm", output_file], check=True)
@@ -174,7 +144,6 @@ def download_pywerview():
         print(f"Downloaded {output_file} successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
-
 
 def download_socat(platform, arch):
     if platform == "windows":
@@ -199,27 +168,21 @@ def download_socat(platform, arch):
         return
 
     try:
-        # Descargar el archivo usando wget
         subprocess.run(["wget", url, "-O", output_file], check=True)
         print(f"Downloaded {output_file} successfully.")
         
-        # Si el archivo es un zip, descomprimirlo
         if output_file.endswith(".zip"):
             subprocess.run(["unzip", output_file], check=True)
             print(f"Extracted {output_file} successfully.")
-            
-            # Borrar el archivo zip después de la extracción
             os.remove(output_file)
             print(f"Deleted {output_file} successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download or extraction: {e}")
 
-
 def privesc():
     sys.exit(0)
 def pivoting():
     sys.exit(0)
-
 
 def main():
     parser = argparse.ArgumentParser(description="Download various tools.")
@@ -231,7 +194,6 @@ def main():
 
     if args.tool == "privesc":
         privesc(args.arch)
-
     if args.tool == "mimikatz":
         download_mimikatz(args.arch)
     elif args.tool == "kerbrute":
@@ -252,8 +214,6 @@ def main():
         download_rpcenum(args.system, args.arch)
     elif args.tool == "socat":
         download_socat(args.system, args.arch)
-
-        
 
 if __name__ == "__main__":
     main()
