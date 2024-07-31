@@ -5,9 +5,6 @@ import subprocess
 import os
 import shutil
 
-
-
-
 def download_mimikatz(arch):
     url = "https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.zip"
     try:
