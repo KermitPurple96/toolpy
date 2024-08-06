@@ -284,7 +284,7 @@ def download_powercat():
 def download_nishang():
     subprocess.run(["git", "clone", "https://github.com/samratashok/nishang"], check=True)
 
-def download_invoke_psexec():
+def download_invoke_thehash():
     subprocess.run(["git", "clone", "https://github.com/Kevin-Robertson/Invoke-TheHash"], check=True)
 
 
@@ -325,8 +325,42 @@ def main():
         download_rpcenum(args.system, args.arch)
     elif args.tool == "socat":
         download_socat(args.system, args.arch)
+    elif args.tool == "dnstools":
+        download_dnstools(args.system, args.arch)
+    elif args.tool == "sprying":
+        download_sprying(args.system, args.arch)
+    elif args.tool == "pkinit":
+        download_pkinit(args.system, args.arch)
+    elif args.tool == "adcskiller":
+        download_adcskiller(args.system, args.arch)
+    elif args.tool == "sccme_hunter":
+        sccme_hunter(args.system, args.arch)
+    elif args.tool == "maz_windows_binaries":
+        download_maz_windows_binaries(args.system, args.arch)
+    elif args.tool == "sysinternalsSuite":
+        download_sysinternalsSuite(args.system, args.arch)
+    elif args.tool == "sharpcollection":
+        download_sharpcollection(args.system, args.arch)
+    elif args.tool == "nc_exe":
+        download_nc_exe(args.system, args.arch)
+    elif args.tool == "powersharppack":
+        download_powersharppack(args.system, args.arch)
+    elif args.tool == "powerupsql":
+        download_powerupsql(args.system, args.arch)
+    elif args.tool == "invoke_psexec":
+        download_invoke_psexec(args.system, args.arch)
+    elif args.tool == "invoke_conptyshell":
+        download_invoke_conptyshell(args.system, args.arch)
+    elif args.tool == "conptyshell_exe":
+        download_conptyshell_exe(args.system, args.arch)
+    elif args.tool == "powercat":
+        download_powercat(args.system, args.arch)
+    elif args.tool == "nishang":
+        download_nishang(args.system, args.arch)
+    elif args.tool == "invoke_thehash":
+        download_invoke_thehash(args.system, args.arch)
 
-        
+            
 
 if __name__ == "__main__":
     main()
