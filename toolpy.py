@@ -42,9 +42,6 @@ def download_mimikatz(arch):
         print(f"File not found error: {e}")
 
 
-
-
-
 def download_kerbrute(platform, arch):
 
     if platform == "linux":
@@ -72,9 +69,6 @@ def download_kerbrute(platform, arch):
         print(f"Kerbrute for {platform} {arch} downloaded successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error during download: {e}")
-
-
-
 
 
 def download_impacket(platform, arch):
@@ -288,17 +282,35 @@ def download_invoke_thehash():
     subprocess.run(["git", "clone", "https://github.com/Kevin-Robertson/Invoke-TheHash"], check=True)
 
 
-def privesc():
+def recon(platform, arch):
     sys.exit(0)
-def pivoting():
+
+
+def privesc(platform, arch):
+    sys.exit(0)
+
+
+def pivoting(platform, arch):
     sys.exit(0)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Download various tools.")
-    parser.add_argument("-t", "--tool", required=True, choices=["checker", "linenum", "pywerview", "socat", "rpcenum", "mimikatz", "kerbrute", "impacket","suggester", "suggester2"], help="Specify the tool to download.")
-    parser.add_argument("-s", "--system", required=True, choices=["windows", "linux"], help="Specify the system (platform) for the tool.")
-    parser.add_argument("-a", "--arch", required=True, choices=["x86", "x64"], help="Specify the architecture for the tool.")
+    parser.add_argument(
+    "-t", "--tool",
+    required=True,
+    choices=[
+        "checker", "linenum", "pywerview", "socat", "rpcenum", "mimikatz", "kerbrute",
+        "impacket", "suggester", "suggester2", "privesc", "dnstools", "sprying", "pkinit", 
+        "adcskiller", "sccme_hunter", "maz_windows_binaries", "sysinternalsSuite", 
+        "sharpcollection", "nc_exe", "powersharppack", "powerupsql", 
+        "invoke_psexec", "invoke_conptyshell", "conptyshell_exe", 
+        "powercat", "nishang", "invoke_thehash"
+    ],
+    help="Specify the tool to download."
+)
+    parser.add_argument("-s", "--system", required=False, choices=["windows", "linux"], help="Specify the system (platform) for the tool.")
+    parser.add_argument("-a", "--arch", required=False, choices=["x86", "x64"], help="Specify the architecture for the tool.")
 
     args = parser.parse_args()
 
@@ -320,7 +332,7 @@ def main():
     elif args.tool == "linenum":
         download_linenum(args.system, args.arch)
     elif args.tool == "pywerview":
-        download_pywerview(args.system, args.arch)
+        download_pywerview()
     elif args.tool == "rpcenum":
         download_rpcenum(args.system, args.arch)
     elif args.tool == "socat":
