@@ -371,6 +371,24 @@ def download_socat(platform, arch):
 
 
 
+def download_sharpwmi():
+    subprocess.run(["wget", "https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpWMI.exe"], check=True)
+
+
+def download_sharpup():
+    subprocess.run(["wget", "https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpUp.exe"], check=True)
+
+def download_rubeus():
+    subprocess.run(["wget", "https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Rubeus.exe"], check=True)
+
+def download_certify():
+    subprocess.run(["wget", "https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/Certify.exe"], check=True)
+
+
+
+
+
+
 
 def download_poshadcs():
     subprocess.run(["wget", "https://raw.githubusercontent.com/cfalta/PoshADCS/master/ADCS.ps1"], check=True)
@@ -459,7 +477,8 @@ def main():
         "sherlock", "Privesccheck", "powerup", "kekeo", "lazagne", "adpeas",
         "adpeas-light", "sharpview", "powerview", "sharphound", "invoke_psexec",
         "password_spray", "ligolo", "poshadcs", "adcspwn",
-        "powersccm", "sharpsccm"
+        "powersccm", "sharpsccm","sharpwmi","sharpup","rubeus","certify"
+
     ],
     help="Specify the tool to download."
 )
@@ -563,8 +582,17 @@ def main():
         download_powersccm()
     elif args.tool == "sharpsccm":
         download_sharpsccm()
+    elif args.tool == "sharpwmi":
+        download_sharpwmi()
+    elif args.tool == "sharpup":
+        download_sharpup()
+    elif args.tool == "rubeus":
+        download_rubeus()
+    elif args.tool == "certiy":
+        download_certify()
 
-            
+
+
 
 if __name__ == "__main__":
     main()
